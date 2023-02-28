@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Container, Grid, Button } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import Chatlist from "../components/Chatlist";
 import ChatBox from "../components/ChatBox";
+import ChatHome from "../components/ChatHome";
 
 const ChatPage = () => {
 
@@ -28,8 +29,7 @@ const ChatPage = () => {
         if (selectedChat) {
             return (
                 <Container maxWidth={false} disableGutters>
-                    {/* <Button onClick={handleBackClicked}>Back</Button> */}
-                    <ChatBox chat={selectedChat} handleBackClicked={handleBackClicked} />
+                    <ChatBox chat={selectedChat} isMobile={isMobile} handleBackClicked={handleBackClicked} />
                 </Container>
             );
         }
@@ -43,14 +43,14 @@ const ChatPage = () => {
     return (
         <Container maxWidth={false} disableGutters>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={3}>
                     <Chatlist onChatSelected={handleChatSelected} />
                 </Grid>
-                <Grid item xs={12} sm={8}>
+                <Grid item xs={12} sm={9}>
                     {selectedChat ? (
                         <ChatBox chat={selectedChat} />
                     ) : (
-                        <h1>This is chat App</h1>
+                        <ChatHome />
                     )}
                 </Grid>
             </Grid>
